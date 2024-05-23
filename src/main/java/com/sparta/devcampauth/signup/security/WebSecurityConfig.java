@@ -1,8 +1,11 @@
 package com.sparta.devcampauth.signup.security;
 
+import com.sparta.devcampauth.login.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -31,4 +34,10 @@ public class WebSecurityConfig {
     public PasswordEncoder passwordEncoder () { // 비밀번호를 암호화하기 위해 BCryptPasswordEncoder. 사용자 비밀번호를 안전하게 저장하고 검증하는 데 사용
         return new BCryptPasswordEncoder();
     }
+
+    @Bean
+    public AuthenticationManager authenticationManagerBean(AuthenticationConfiguration configuration) throws Exception {
+        return configuration.getAuthenticationManager();
+    }
+
 }
