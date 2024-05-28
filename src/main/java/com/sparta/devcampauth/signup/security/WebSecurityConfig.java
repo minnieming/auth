@@ -25,6 +25,7 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests((authHttpRequest) -> // API 제어 설정 : 요청된 URL 기반으로 인증/인가 제어 및 접근 권한 설정
                         authHttpRequest
                                 .requestMatchers("/auth/**").permitAll()
+                                .requestMatchers("/payment/**").permitAll()
                                 .anyRequest().authenticated()); // 그 외 모든 요청 인증처리 진행
 
                 return http.build(); // 설정을 적용하고 SecurityFilterChain을 반환
