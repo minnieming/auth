@@ -21,8 +21,8 @@ public class CouponsController {
     private final CouponService couponService;
 
     @PostMapping ("/coupon")
-    public ResponseEntity <PaymentResponse> discountCoupon (
-                                                         @RequestBody CouponRequest couponRequest) {
-        return couponService.discountCoupon (couponRequest);
+    public ResponseEntity <PaymentResponse> discountCoupon (@RequestBody CouponRequest couponRequest) {
+        PaymentResponse paymentResponse = couponService.discountCoupon (couponRequest);
+        return ResponseEntity.ok(paymentResponse);
     }
 }

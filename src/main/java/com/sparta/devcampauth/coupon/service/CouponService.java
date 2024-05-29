@@ -2,18 +2,12 @@ package com.sparta.devcampauth.coupon.service;
 
 import com.sparta.devcampauth.coupon.dto.CouponRequest;
 import com.sparta.devcampauth.coupon.dto.PaymentResponse;
-import com.sparta.devcampauth.coupon.entity.Coupon;
 import com.sparta.devcampauth.coupon.entity.CouponType;
 import com.sparta.devcampauth.coupon.repository.CouponRepository;
-import com.sparta.devcampauth.signup.entity.User;
 import com.sparta.devcampauth.signup.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
-
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -24,7 +18,7 @@ public class CouponService {
     private UserRepository userRepository;
 
 
-    public ResponseEntity<PaymentResponse> discountCoupon(CouponRequest couponRequest) {
+    public PaymentResponse discountCoupon(CouponRequest couponRequest) {
 
         String coupon = String.valueOf(couponRequest.getCouponType());
         double price = couponRequest.getPrice();
@@ -38,8 +32,6 @@ public class CouponService {
             }
         }
 
-        PaymentResponse paymentResponse = new PaymentResponse(finalPrice);
-
-        return ResponseEntity.ok(paymentResponse);
+      return new PaymentResponse(finalPrice);
     }
 }
