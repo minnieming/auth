@@ -26,6 +26,7 @@ public class WebSecurityConfig {
                         authHttpRequest
                                 .requestMatchers("/auth/**").permitAll()
                                 .requestMatchers("/payment/**").permitAll()
+                                .requestMatchers("/confirm").permitAll()
                                 .anyRequest().authenticated()); // 그 외 모든 요청 인증처리 진행
 
                 return http.build(); // 설정을 적용하고 SecurityFilterChain을 반환
